@@ -7,7 +7,7 @@
 ## 🖼️ Dashboard Preview
 
 ### Page 1 — Performance Dashboard (Summary)
-![assetspage1_performance_dashboard.png.png)
+![Alternative Text](assetspage1_performance_dashboard.png.png)
 
 ### Page 2 — Performance | Details
 ![Performance Details](assets/page2_performance_details.png)
