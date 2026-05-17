@@ -152,7 +152,7 @@ IF([Total Revenue Difference] >= 0, "Green", "Red")
 - **Dark theme** — Professional, executive-ready aesthetic with high contrast for data visibility
 - **Colour-coded KPI indicators** — Green/Red dynamic formatting on variance measures for instant insight
 - **Page navigator** — Seamless navigation between Summary and Details pages
-- **Consistent slicers** — Synchronised Year, Quarter, and Channel filters across both pages
+- **Consistent slicers** — Synchronised Year, customer, and region filters across both pages
 - **Star schema** — Clean separation of facts and dimensions for optimal DAX performance and scalability
 
 ---
