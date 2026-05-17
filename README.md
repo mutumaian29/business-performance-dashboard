@@ -4,7 +4,7 @@
 
 ---
 
-## 🖼️ Dashboard Preview
+##  Dashboard Preview
 
 ### Page 1 — Performance Dashboard (Summary)
 ![Alternative Text](assetspage1_performance_dashboard.png.png)
@@ -16,7 +16,7 @@
 
 ---
 
-## 📋 Project Overview
+##  Project Overview
 
 | Field | Details |
 |-------|---------|
@@ -44,7 +44,7 @@ The dashboard answers:
 
 ---
 
-## 📐 Data Model (Star Schema)
+##  Data Model (Star Schema)
 
 ```
                     ┌─────────────┐
@@ -94,11 +94,11 @@ The dashboard answers:
 | YoY Profit Growth | Year-over-year profit growth % |
 
 **Charts:**
-- 📈 **Stacked Area Chart** — Revenue trend over time
-- 🎀 **Ribbon Chart** — Ranking of products/channels by performance
-- 🔻 **Funnel Chart** — Sales pipeline or conversion stages
-- 🌳 **Treemap** — Revenue breakdown by category hierarchy
-- 📋 **Detail Table** — Granular transaction-level view
+-  **Stacked Area Chart** — Revenue trend over time
+-  **Ribbon Chart** — Ranking of products/channels by performance
+-  **Funnel Chart** — Sales pipeline or conversion stages
+-  **Treemap** — Revenue breakdown by category hierarchy
+-  **Detail Table** — Granular transaction-level view
 
 **Slicers (3):** Year · Quarter · Channel (enabling cross-filter across all visuals)
 
@@ -114,7 +114,7 @@ Deep-dive analytical view with:
 
 ---
 
-## 🧮 DAX Measures
+##  DAX Measures
 
 All measures are stored in a dedicated measures table for clean model organisation.
 
@@ -157,7 +157,7 @@ IF([Total Revenue Difference] >= 0, "Green", "Red")
 
 ---
 
-## 🚀 How to Use
+##  How to Use
 
 ### Prerequisites
 - [Power BI Desktop](https://powerbi.microsoft.com/desktop/) (free) — any version from March 2024 onwards
@@ -199,7 +199,7 @@ Date_Table columns:
 
 ---
 
-## 📁 Repository Structure
+##  Repository Structure
 
 ```
 business-performance-dashboard/
