@@ -10,7 +10,7 @@
 ![Alternative Text](assetspage1_performance_dashboard.png.png)
 
 ### Page 2 — Performance | Details
-![Performance Details](assets/page2_performance_details.png)
+![Alternative Text](assetspage2_performance_details.png.png)
 
 > **Note:** Screenshots can be added by opening the `.pbix` file in Power BI Desktop and taking a snapshot of each page.
 
