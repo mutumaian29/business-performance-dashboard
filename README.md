@@ -1,47 +1,234 @@
-# Business Performance Dashboard — Power BI
+# 📊 Business Performance Dashboard — Power BI
 
-A portfolio dashboard for monitoring sales, revenue, costs and profitability across products, customers, regions and channels.
+> An executive-level business performance dashboard built in Power BI, tracking revenue, cost, and profit KPIs with Year-to-Date (YTD), Month-to-Date (MTD), and Year-over-Year (YoY) intelligence across products, customers, regions, and sales channels.
 
-## Dashboard preview
+---
 
-### Summary
+##  Dashboard Preview
 
+### Page 1 — Performance Dashboard (Summary)
 ![Performance summary dashboard](assetspage1_performance_dashboard.png.png)
 
-### Details
-
+### Page 2 — Performance | Details
 ![Performance details dashboard](assetspage2_performance_details.png.png)
 
-## Business questions
+### Additional report preview
+![Additional dashboard screenshot](assetspage3_performance_dashboard.png.png)
 
-- How are revenue, costs and profit changing over time?
-- Which products, customers, regions and channels contribute most to performance?
-- Where should management investigate adverse variances?
+---
 
-## Approach
+##  Project Overview
 
-The two-page report combines KPI cards, time intelligence, interactive charts, slicers and detailed tables. The documented star schema consists of FactSales, DimProducts, DimCustomer, DimRegion and Date_Table.
+| Field | Details |
+|-------|---------|
+| **Tool** | Microsoft Power BI Desktop |
+| **Domain** | Business Intelligence / Sales Analytics |
+| **Data Model** | Star Schema |
+| **Pages** | 2 (Summary + Details) |
+| **DAX Measures** | 15 |
+| **Visual Types** | Card, Funnel, Ribbon Chart, Stacked Area Chart, Treemap, Table, Slicer, Page Navigator |
+| **Author** | Ian Mutuma |
 
-The report uses DAX measures for year-to-date and month-to-date reporting, year-over-year comparisons and conditional formatting. Example:
+---
 
-```dax
-YTD Total Revenue =
-TOTALYTD(SUM(FactSales[Revenue]), Date_Table[Date])
+## 🎯 Business Problem
+
+This portfolio project demonstrates how business stakeholders could use a single, interactive view to monitor **sales performance** across multiple dimensions — product lines, customer segments, regions, and channels — without manually compiling spreadsheets each month.
+
+The dashboard answers:
+- How is the business performing **this year vs last year**?
+- Which **products, customers, and regions** are driving revenue?
+- Where are **costs increasing** relative to revenue?
+- How is **profit trending** month-over-month?
+- Which **sales channels** are most effective?
+
+---
+
+##  Data Model (Star Schema)
+
+```
+                    ┌─────────────┐
+                    │  DimProducts │
+                    │ Product name │
+                    └──────┬──────┘
+                           │
+┌──────────────┐    ┌──────▼──────┐    ┌─────────────────┐
+│  DimCustomer │────│  FactSales  │────│    DimRegion     │
+│ Customer name│    │             │    │ Delivery Region  │
+│   Channel    │    │ Order Qty   │    │    Channel       │
+└──────────────┘    │ Ship Date   │    └─────────────────┘
+                    │ Revenue     │
+                    │ Cost        │    ┌─────────────┐
+                    │ Profit      │────│  Date_Table  │
+                    └─────────────┘    │ Year/Quarter│
+                                       │ Week/Month  │
+                                       └─────────────┘
 ```
 
-## Using the report for decisions
+### Tables
+| Table | Type | Description |
+|-------|------|-------------|
+| `FactSales` | Fact | Core transaction data — orders, revenue, cost |
+| `DimProducts` | Dimension | Product catalogue |
+| `DimCustomer` | Dimension | Customer details and channel |
+| `DimRegion` | Dimension | Delivery regions and geography |
+| `Date_Table` | Dimension | Date intelligence — Year, Quarter, Week |
 
-Use period comparisons to identify adverse trends, then filter by product, region or channel to investigate their contribution. Review revenue alongside costs and profit rather than relying on sales volume alone. These are suggested analytical workflows, not independently validated business findings.
+---
 
-## Open the project
+## 📊 Dashboard Pages
 
-1. Download [the Power BI report](Business_performance_dashboard.pbix).
-2. Open it in Power BI Desktop.
-3. Explore the summary and details pages using the available slicers.
-4. If refreshing requires the original data source, reconnect the appropriate dataset.
+### Page 1 — Performance Dashboard (Summary View)
 
-The original dataset source and refresh requirements are not documented here. The screenshots provide a preview without requiring Power BI Desktop.
+**KPI Cards (9):**
+| KPI | Description |
+|-----|-------------|
+| YTD Total Revenue | Year-to-date cumulative revenue |
+| YTD Total Cost | Year-to-date cumulative cost |
+| YTD Total Profit | Year-to-date cumulative profit |
+| MTD Revenue KPI | Month-to-date revenue with trend indicator |
+| Revenue Difference | Variance vs prior period (colour-coded) |
+| Cost Difference | Cost variance vs prior period |
+| Profit Difference | Profit variance vs prior period |
+| YoY Revenue Growth | Year-over-year revenue growth % |
+| YoY Profit Growth | Year-over-year profit growth % |
 
-**Tools:** Power BI Desktop, DAX, star schema modelling.
+**Charts:**
+-  **Stacked Area Chart** — Revenue trend over time
+-  **Ribbon Chart** — Ranking of products/channels by performance
+-  **Funnel Chart** — Comparison of performance across categories
+-  **Treemap** — Revenue breakdown by category hierarchy
+-  **Detail Table** — Granular transaction-level view
 
-**Author:** Ian Mutuma · [LinkedIn](https://linkedin.com/in/ian-mutuma-3639bb280)
+**Slicers (3):** Year · Quarter · Channel (enabling cross-filter across all visuals)
+
+---
+
+### Page 2 — Performance | Details
+
+Deep-dive analytical view with:
+- Detailed table for granular analysis
+- Same KPI card suite for context
+- Consistent slicers (Year · Quarter · Channel)
+- Navigation button back to Summary page
+
+---
+
+##  DAX Measures
+
+All measures are stored in a dedicated measures table for clean model organisation.
+
+```dax
+-- Year-to-Date Revenue
+YTD Total Revenue = 
+TOTALYTD(SUM(FactSales[Revenue]), Date_Table[Date])
+
+-- Month-to-Date Revenue KPI
+MTD Revenue KPI = 
+TOTALMTD(SUM(FactSales[Revenue]), Date_Table[Date])
+
+-- Year-over-Year Revenue Growth
+YoY Revenue Growth = 
+DIVIDE(
+    [YTD Total Revenue] - CALCULATE([YTD Total Revenue], SAMEPERIODLASTYEAR(Date_Table[Date])),
+    CALCULATE([YTD Total Revenue], SAMEPERIODLASTYEAR(Date_Table[Date]))
+)
+
+-- Revenue Difference (vs prior period)
+Total Revenue Difference = 
+[YTD Total Revenue] - CALCULATE([YTD Total Revenue], SAMEPERIODLASTYEAR(Date_Table[Date]))
+
+-- Dynamic color coding for variance indicators
+Revenue Difference Color = 
+IF([Total Revenue Difference] >= 0, "Green", "Red")
+```
+
+> The [DAX measures reference](dax_measures.md) documents 15 measures covering revenue, cost and profit. The [data dictionary](data_dictionary.md) describes the model. These documents have not been independently reconciled against the PBIX model.
+
+---
+
+## 🎨 Design Decisions
+
+- **Dark theme** — Professional, executive-ready aesthetic with high contrast for data visibility
+- **Colour-coded KPI indicators** — Green/Red dynamic formatting on variance measures for instant insight
+- **Page navigator** — Seamless navigation between Summary and Details pages
+- **Consistent slicers** — Year, quarter and channel filters for exploring performance
+- **Star schema** — Clean separation of facts and dimensions to organise relationships and support consistent reporting
+
+---
+
+##  How to Use
+
+### Prerequisites
+- [Power BI Desktop](https://www.microsoft.com/en-us/power-platform/products/power-bi/desktop) (free) — use a current version
+
+### Steps
+1. Clone or download this repository
+2. Open [Business performance dashboard.pbix](Business%20performance%20dashboard.pbix) in Power BI Desktop
+3. If prompted about data source, connect to your own dataset (see **Data Schema** below)
+4. Explore using the slicers (Year, Quarter, Channel) to filter all visuals
+5. Navigate between pages using the page navigator at the bottom
+
+### Reconnecting Your Own Data
+The documented schema below is a guide for reconnecting compatible data. The original data source is not documented; refreshing may require additional configuration.
+
+```
+FactSales columns:
+├── Order Quantity    (number)
+├── Ship Date         (date)
+├── Revenue/Sales     (number)
+├── Cost              (number)
+└── [FK keys to dimensions]
+
+DimCustomer columns:
+├── Customer name     (text)
+└── Channel           (text)
+
+DimProducts columns:
+└── Product name      (text)
+
+DimRegion columns:
+└── Delivery Region Name (text)
+
+Date_Table columns:
+├── Date              (date — mark as Date Table)
+├── Year              (number)
+├── Quarter           (text)
+└── Week Number       (number)
+```
+
+---
+
+##  Repository Structure
+
+```
+business-performance-dashboard/
+├── Business performance dashboard.pbix
+├── README.md
+├── assetspage1_performance_dashboard.png.png
+├── assetspage2_performance_details.png.png
+├── assetspage3_performance_dashboard.png.png
+├── dax_measures.md
+└── data_dictionary.md
+```
+
+---
+
+## 💡 Key Learnings
+
+- **Time intelligence in DAX** — Implementing TOTALYTD, TOTALMTD, and SAMEPERIODLASTYEAR correctly requires a properly marked Date Table
+- **Dynamic formatting** — Using DAX measures to drive conditional colours on KPI cards eliminates the need for manual formatting rules
+- **Star schema performance** — Separating dimensions from facts supports consistent filtering and understandable measures
+- **Page navigation** — Power BI's built-in page navigator component creates a polished, app-like experience without custom visuals
+
+---
+
+## 🔗 Connect
+
+**Ian Mutuma**
+- 📧 mutumaian29@gmail.com
+- 🐙 [GitHub](https://github.com/mutumaian29)
+
+---
+
+*Built with Power BI Desktop · Portfolio project*
