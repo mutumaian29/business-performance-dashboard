@@ -1,15 +1,15 @@
-# 📊 Business Performance Dashboard — Power BI
+# 📊 Business Performance Dashboard: Power BI
 
-> An executive-level business performance dashboard built in Power BI, tracking revenue, cost, and profit KPIs with Year-to-Date (YTD), Month-to-Date (MTD), and Year-over-Year (YoY) intelligence across products, customers, regions, and sales channels.
+> I built this Power BI dashboard to track revenue, costs and profit across products, customers, regions and sales channels. It includes year-to-date (YTD), month-to-date (MTD) and year-over-year (YoY) comparisons.
 
 ---
 
 ##  Dashboard Preview
 
-### Page 1 — Performance Dashboard (Summary)
+### Page 1: Performance Dashboard (Summary)
 ![Performance summary dashboard](assetspage1_performance_dashboard.png.png)
 
-### Page 2 — Performance | Details
+### Page 2: Performance | Details
 ![Performance details dashboard](assetspage2_performance_details.png.png)
 
 ### Additional report preview
@@ -33,7 +33,7 @@
 
 ## 🎯 Business Problem
 
-This portfolio project demonstrates how business stakeholders could use a single, interactive view to monitor **sales performance** across multiple dimensions — product lines, customer segments, regions, and channels — without manually compiling spreadsheets each month.
+I wanted to build a report that would make it easier to monitor **sales performance** without manually compiling spreadsheets each month. I designed the dashboard to bring product, customer, regional and channel performance into one interactive view.
 
 The dashboard answers:
 - How is the business performing **this year vs last year**?
@@ -68,17 +68,17 @@ The dashboard answers:
 ### Tables
 | Table | Type | Description |
 |-------|------|-------------|
-| `FactSales` | Fact | Core transaction data — orders, revenue, cost |
+| `FactSales` | Fact | Core transaction data: orders, revenue, cost |
 | `DimProducts` | Dimension | Product catalogue |
 | `DimCustomer` | Dimension | Customer details and channel |
 | `DimRegion` | Dimension | Delivery regions and geography |
-| `Date_Table` | Dimension | Date intelligence — Year, Quarter, Week |
+| `Date_Table` | Dimension | Date intelligence: Year, Quarter, Week |
 
 ---
 
 ## 📊 Dashboard Pages
 
-### Page 1 — Performance Dashboard (Summary View)
+### Page 1: Performance Dashboard (Summary View)
 
 **KPI Cards (9):**
 | KPI | Description |
@@ -94,19 +94,19 @@ The dashboard answers:
 | YoY Profit Growth | Year-over-year profit growth % |
 
 **Charts:**
--  **Stacked Area Chart** — Revenue trend over time
--  **Ribbon Chart** — Ranking of products/channels by performance
--  **Funnel Chart** — Comparison of performance across categories
--  **Treemap** — Revenue breakdown by category hierarchy
--  **Detail Table** — Granular transaction-level view
+-  **Stacked Area Chart**: Revenue trend over time
+-  **Ribbon Chart**: Ranking of products/channels by performance
+-  **Funnel Chart**: Comparison of performance across categories
+-  **Treemap**: Revenue breakdown by category hierarchy
+-  **Detail Table**: Granular transaction-level view
 
 **Slicers (3):** Year · Quarter · Channel (enabling cross-filter across all visuals)
 
 ---
 
-### Page 2 — Performance | Details
+### Page 2: Performance | Details
 
-Deep-dive analytical view with:
+I designed the second page for more detailed analysis. It includes:
 - Detailed table for granular analysis
 - Same KPI card suite for context
 - Consistent slicers (Year · Quarter · Channel)
@@ -116,7 +116,7 @@ Deep-dive analytical view with:
 
 ##  DAX Measures
 
-All measures are stored in a dedicated measures table for clean model organisation.
+I organised the DAX measures in a dedicated table to make them easier to find and maintain.
 
 ```dax
 -- Year-to-Date Revenue
@@ -149,18 +149,18 @@ IF([Total Revenue Difference] >= 0, "Green", "Red")
 
 ## 🎨 Design Decisions
 
-- **Dark theme** — Professional, executive-ready aesthetic with high contrast for data visibility
-- **Colour-coded KPI indicators** — Green/Red dynamic formatting on variance measures for instant insight
-- **Page navigator** — Seamless navigation between Summary and Details pages
-- **Consistent slicers** — Year, quarter and channel filters for exploring performance
-- **Star schema** — Clean separation of facts and dimensions to organise relationships and support consistent reporting
+- **Dark theme:** I chose a dark background to make the charts and KPI cards easier to read.
+- **Colour-coded KPI indicators:** I used green and red to highlight favourable and unfavourable variances.
+- **Page navigator:** I added navigation between the summary and details pages.
+- **Consistent slicers:** I included year, quarter and channel filters for exploring performance.
+- **Star schema:** I separated facts and dimensions to organise relationships and support consistent reporting.
 
 ---
 
 ##  How to Use
 
 ### Prerequisites
-- [Power BI Desktop](https://www.microsoft.com/en-us/power-platform/products/power-bi/desktop) (free) — use a current version
+- [Power BI Desktop](https://www.microsoft.com/en-us/power-platform/products/power-bi/desktop) (free): use a current version
 
 ### Steps
 1. Clone or download this repository
@@ -191,7 +191,7 @@ DimRegion columns:
 └── Delivery Region Name (text)
 
 Date_Table columns:
-├── Date              (date — mark as Date Table)
+├── Date              (date: mark as Date Table)
 ├── Year              (number)
 ├── Quarter           (text)
 └── Week Number       (number)
@@ -216,10 +216,10 @@ business-performance-dashboard/
 
 ## 💡 Key Learnings
 
-- **Time intelligence in DAX** — Implementing TOTALYTD, TOTALMTD, and SAMEPERIODLASTYEAR correctly requires a properly marked Date Table
-- **Dynamic formatting** — Using DAX measures to drive conditional colours on KPI cards eliminates the need for manual formatting rules
-- **Star schema performance** — Separating dimensions from facts supports consistent filtering and understandable measures
-- **Page navigation** — Power BI's built-in page navigator component creates a polished, app-like experience without custom visuals
+- **Time intelligence in DAX:** I learned the importance of a properly configured date table when calculating period comparisons.
+- **Dynamic formatting:** I learned how to use DAX measures to control KPI colours automatically.
+- **Star schema:** I gained practical experience organising fact and dimension tables to support consistent filtering.
+- **Page navigation:** I learned how to make a report easier to explore using the built-in page navigator.
 
 ---
 
