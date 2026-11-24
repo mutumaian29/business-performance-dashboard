@@ -7,12 +7,13 @@
 ##  Dashboard Preview
 
 ### Page 1 — Performance Dashboard (Summary)
-![Alternative Text](assetspage1_performance_dashboard.png.png)
+![Performance summary dashboard](assetspage1_performance_dashboard.png.png)
 
 ### Page 2 — Performance | Details
-![Alternative Text](assetspage2_performance_details.png.png)
+![Performance details dashboard](assetspage2_performance_details.png.png)
 
-> **Note:** Screenshots can be added by opening the `.pbix` file in Power BI Desktop and taking a snapshot of each page.
+### Additional report preview
+![Additional dashboard screenshot](assetspage3_performance_dashboard.png.png)
 
 ---
 
@@ -26,14 +27,13 @@
 | **Pages** | 2 (Summary + Details) |
 | **DAX Measures** | 15 |
 | **Visual Types** | Card, Funnel, Ribbon Chart, Stacked Area Chart, Treemap, Table, Slicer, Page Navigator |
-| **Created** | March 2024 |
 | **Author** | Ian Mutuma |
 
 ---
 
 ## 🎯 Business Problem
 
-Business stakeholders needed a single, interactive view to monitor **sales performance** across multiple dimensions — product lines, customer segments, regions, and channels — without manually compiling spreadsheets each month.
+This portfolio project demonstrates how business stakeholders could use a single, interactive view to monitor **sales performance** across multiple dimensions — product lines, customer segments, regions, and channels — without manually compiling spreadsheets each month.
 
 The dashboard answers:
 - How is the business performing **this year vs last year**?
@@ -96,7 +96,7 @@ The dashboard answers:
 **Charts:**
 -  **Stacked Area Chart** — Revenue trend over time
 -  **Ribbon Chart** — Ranking of products/channels by performance
--  **Funnel Chart** — Sales pipeline or conversion stages
+-  **Funnel Chart** — Comparison of performance across categories
 -  **Treemap** — Revenue breakdown by category hierarchy
 -  **Detail Table** — Granular transaction-level view
 
@@ -107,7 +107,7 @@ The dashboard answers:
 ### Page 2 — Performance | Details
 
 Deep-dive analytical view with:
-- Full data table for drill-through and row-level analysis
+- Detailed table for granular analysis
 - Same KPI card suite for context
 - Consistent slicers (Year · Quarter · Channel)
 - Navigation button back to Summary page
@@ -143,7 +143,7 @@ Revenue Difference Color =
 IF([Total Revenue Difference] >= 0, "Green", "Red")
 ```
 
-> The full 15 measures cover Revenue, Cost, and Profit across YTD, MTD, YoY, and difference/color-coding variants.
+> The [DAX measures reference](dax_measures.md) documents 15 measures covering revenue, cost and profit. The [data dictionary](data_dictionary.md) describes the model. These documents have not been independently reconciled against the PBIX model.
 
 ---
 
@@ -152,25 +152,25 @@ IF([Total Revenue Difference] >= 0, "Green", "Red")
 - **Dark theme** — Professional, executive-ready aesthetic with high contrast for data visibility
 - **Colour-coded KPI indicators** — Green/Red dynamic formatting on variance measures for instant insight
 - **Page navigator** — Seamless navigation between Summary and Details pages
-- **Consistent slicers** — Synchronised Year, customer, and region filters across both pages
-- **Star schema** — Clean separation of facts and dimensions for optimal DAX performance and scalability
+- **Consistent slicers** — Year, quarter and channel filters for exploring performance
+- **Star schema** — Clean separation of facts and dimensions to organise relationships and support consistent reporting
 
 ---
 
 ##  How to Use
 
 ### Prerequisites
-- [Power BI Desktop](https://powerbi.microsoft.com/desktop/) (free) — any version from March 2024 onwards
+- [Power BI Desktop](https://www.microsoft.com/en-us/power-platform/products/power-bi/desktop) (free) — use a current version
 
 ### Steps
 1. Clone or download this repository
-2. Open `Business_performance_dashboard.pbix` in Power BI Desktop
+2. Open [Business performance dashboard.pbix](Business%20performance%20dashboard.pbix) in Power BI Desktop
 3. If prompted about data source, connect to your own dataset (see **Data Schema** below)
 4. Explore using the slicers (Year, Quarter, Channel) to filter all visuals
 5. Navigate between pages using the page navigator at the bottom
 
 ### Reconnecting Your Own Data
-The dashboard is designed to work with any dataset matching this schema:
+The documented schema below is a guide for reconnecting compatible data. The original data source is not documented; refreshing may require additional configuration.
 
 ```
 FactSales columns:
@@ -203,18 +203,13 @@ Date_Table columns:
 
 ```
 business-performance-dashboard/
-│
-├── Business_performance_dashboard.pbix   ← Main Power BI file
-├── README.md                              ← This file
-│
-├── assets/
-│   ├── page1_performance_dashboard.png   ← Dashboard screenshot (add manually)
-│   ├── page2_performance_details.png     ← Details page screenshot (add manually)
-│   └── data_model.png                    ← Star schema diagram (optional)
-│
-└── docs/
-    ├── dax_measures.md                   ← Full DAX measure documentation
-    └── data_dictionary.md                ← Column definitions
+├── Business performance dashboard.pbix
+├── README.md
+├── assetspage1_performance_dashboard.png.png
+├── assetspage2_performance_details.png.png
+├── assetspage3_performance_dashboard.png.png
+├── dax_measures.md
+└── data_dictionary.md
 ```
 
 ---
@@ -223,7 +218,7 @@ business-performance-dashboard/
 
 - **Time intelligence in DAX** — Implementing TOTALYTD, TOTALMTD, and SAMEPERIODLASTYEAR correctly requires a properly marked Date Table
 - **Dynamic formatting** — Using DAX measures to drive conditional colours on KPI cards eliminates the need for manual formatting rules
-- **Star schema performance** — Keeping dimensions separate from the fact table significantly improves DAX calculation speed on large datasets
+- **Star schema performance** — Separating dimensions from facts supports consistent filtering and understandable measures
 - **Page navigation** — Power BI's built-in page navigator component creates a polished, app-like experience without custom visuals
 
 ---
@@ -231,10 +226,9 @@ business-performance-dashboard/
 ## 🔗 Connect
 
 **Ian Mutuma**
-- 📧 mutumian29@gmail.com
-- 💼 [LinkedIn](https://linkedin.com/in/ian-mutuma-3639bb280)
+- 📧 mutumaian29@gmail.com
 - 🐙 [GitHub](https://github.com/mutumaian29)
 
 ---
 
-*Built with Power BI Desktop · March 2024*
+*Built with Power BI Desktop · Portfolio project*
